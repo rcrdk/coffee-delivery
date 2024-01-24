@@ -1,4 +1,4 @@
-import { products } from '../../../../mocks/products'
+import { productsList } from '../../../../mocks/products'
 import { HomeProduct } from '../Product'
 import { ListContainer } from './styles'
 
@@ -8,7 +8,7 @@ export function HomeProductsList() {
 			<h2>Nossos cafés</h2>
 
 			<div>
-				{products.map((item) => (
+				{productsList.map((item) => (
 					<HomeProduct product={item} key={item.id} />
 				))}
 			</div>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ButtonStateType } from '.'
 
 export const ProductContainer = styled.div`
 	display: block;
@@ -122,16 +123,50 @@ export const ProductControlsCounter = styled.div`
 	}
 `
 
-export const ProductControlsAdd = styled.button`
+interface ProductControlsAdd {
+	variant: ButtonStateType
+}
+
+function ProductControlsAddBackground(state: ButtonStateType) {
+	switch (state) {
+		case 'initial':
+			return 'purple'
+			break
+		case 'loading':
+			return 'yellow'
+			break
+		case 'success':
+			return 'green'
+			break
+		default:
+			return 'purple'
+			break
+	}
+}
+
+export const ProductControlsAdd = styled.button<ProductControlsAdd>`
 	display: block;
 	padding: 0.5rem;
 	border-radius: 0.375rem;
-	background: ${(props) => props.theme.purple};
+	background: ${(props) =>
+		props.theme[ProductControlsAddBackground(props.variant)]};
 	color: ${(props) => props.theme.white};
-	cursor: pointer;
+	cursor: default;
 	transition: background 200ms ease;
 
-	&:hover {
+	&:not(:disabled):hover {
+		cursor: pointer;
 		background: ${(props) => props.theme['purple-dark']};
+	}
+
+	svg {
+		animation: ${(props) =>
+			props.variant === 'loading' ? 'spinner 1s linear 0s infinite' : 'none'};
+	}
+
+	@keyframes spinner {
+		to {
+			transform: rotate(360deg);
+		}
 	}
 `

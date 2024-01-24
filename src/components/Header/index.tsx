@@ -13,13 +13,14 @@ import brandImage from '../../assets/brand.svg'
 import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
-	const { cartItems } = useContext(CartContext)
-
 	const navigate = useNavigate()
+	const { cartQuantity } = useContext(CartContext)
 
 	const handleNavigateToCart = () => {
 		navigate('/cart')
 	}
+
+	const disableCartLink = cartQuantity === 0
 
 	return (
 		<HeaderContainer>
@@ -35,9 +36,16 @@ export function Header() {
 					Porto Alegre, RS
 				</HeaderLocale>
 
-				<HeaderCart type="button" onClick={handleNavigateToCart}>
+				<HeaderCart
+					type="button"
+					disabled={disableCartLink}
+					title={
+						disableCartLink ? 'Nenhum café no carrinho' : 'Carrinho de compras'
+					}
+					onClick={handleNavigateToCart}
+				>
 					<ShoppingCart weight="fill" size={22} />
-					{cartItems.length > 0 && <span>{cartItems.length}</span>}
+					{cartQuantity > 0 && <span>{cartQuantity}</span>}
 				</HeaderCart>
 			</div>
 		</HeaderContainer>

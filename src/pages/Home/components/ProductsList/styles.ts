@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ListContainer = styled.section`
 	position: relative;
 	z-index: 2;
-	padding: 2rem 0 10rem;
+	padding: 2rem 0 6rem;
 
 	> div {
 		display: grid;
@@ -16,10 +16,12 @@ export const ListContainer = styled.section`
 		}
 
 		@media (max-width: 767px) {
+			gap: 1.5rem;
 			grid-template-columns: repeat(2, 1fr);
 		}
 
 		@media (max-width: 499px) {
+			gap: 1rem;
 			grid-template-columns: repeat(1, 1fr);
 		}
 	}

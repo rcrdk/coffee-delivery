@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 		padding: 0;
 		-webkit-font-antialiased: smooth;
 		outline: none;
+		box-sizing: border-box;
 	}
 
 	html,
@@ -75,6 +76,26 @@ export const GlobalStyle = createGlobalStyle`
 
 	strong, b {
 		font-weight: bold;
+	}
+
+	input {
+		padding: 0.75rem;
+		width: 100%;
+		font-size: var(--text-sm);
+		line-height: 1.3;
+		color: ${(props) => props.theme['base-text']};
+		background: ${(props) => props.theme['base-input']};
+		border: 1px solid ${(props) => props.theme['base-button']};
+		border-radius: 0.25rem;
+		transition: border 200ms ease;
+
+		&:focus {
+			border-color: ${(props) => props.theme.yellow};
+		}
+
+		&::placeholder {
+			color: ${(props) => props.theme['base-label']};
+		}
 	}
 
 	.container {

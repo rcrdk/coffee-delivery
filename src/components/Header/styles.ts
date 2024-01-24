@@ -34,6 +34,10 @@ const HeaderButton = styled.button`
 	border-radius: 0.5rem;
 	font-size: var(--text-sm);
 	cursor: pointer;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 `
 
 export const HeaderLocale = styled(HeaderButton)`

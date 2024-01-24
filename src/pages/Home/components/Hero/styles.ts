@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import heroBg from '../../../../assets/hero-bg.jpg'
+import { defaultTheme } from '../../../../styles/theme/default'
 
 export const HeroContainer = styled.section`
 	position: relative;
@@ -79,7 +80,7 @@ export const HeroList = styled.ul`
 `
 
 interface HeroIconProps {
-	variant: string
+	variant: keyof typeof defaultTheme
 }
 
 export const HeroIcon = styled.span<HeroIconProps>`
