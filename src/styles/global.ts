@@ -16,6 +16,10 @@ export const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 	}
 
+	/* :focus-visible {
+		box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 20%);
+	} */
+
 	html,
 	body {
 		color: ${(props) => props.theme['base-text']};
@@ -34,6 +38,13 @@ export const GlobalStyle = createGlobalStyle`
 
 	button {
 		border: none;
+	}
+
+	a,
+	button {
+		&:focus-visible {
+			box-shadow: 0 0 0 1px ${(props) => props.theme.white}, 0 0 0 0.2rem rgb(0 0 0 / 16%);
+		}
 	}
 
 	svg {

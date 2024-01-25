@@ -17,23 +17,20 @@ export const CartContainer = styled.form`
 	}
 `
 
-interface CartCardProps {
-	radius: 'normal' | 'fancy'
-}
-
-export const CartCard = styled.div<CartCardProps>`
+export const CartCard = styled.div`
 	display: block;
 	margin-top: 0.75rem;
 	padding: 2.5rem;
 	background: ${(props) => props.theme['base-card']};
-	border-radius: ${(props) =>
-		props.radius === 'fancy'
-			? '0.375rem 3.5rem  0.375rem 3.5rem '
-			: '0.375rem'};
+	border-radius: 0.375rem;
 
 	@media (max-width: 575px) {
 		padding: 1.75rem;
 	}
+`
+
+export const CartResumeCard = styled(CartCard)`
+	border-radius: 0.375rem 3.5rem 0.375rem 3.5rem;
 `
 
 interface CartCardHeaderProps {
@@ -68,100 +65,6 @@ export const CardCardHeader = styled.div<CartCardHeaderProps>`
 	}
 `
 
-export const CartAddress = styled.div`
-	display: grid;
-	grid-template-columns: 35% 1fr 3.75rem;
-	gap: 1rem 0.75rem;
-
-	@media (max-width: 767px) {
-		grid-template-columns: 3.75rem 1fr 1fr 3.75rem;
-	}
-
-	> div {
-		&:nth-child(2) {
-			grid-column: 1 / span 3;
-		}
-
-		&:nth-child(4) {
-			grid-column: span 2;
-		}
-
-		@media (max-width: 767px) {
-			&:nth-child(1),
-			&:nth-child(2),
-			&:nth-child(5) {
-				grid-column: 1 / span 4;
-			}
-
-			&:nth-child(3) {
-				grid-column: 1 / span 2;
-			}
-
-			&:nth-child(4) {
-				grid-column: span 2;
-			}
-
-			&:nth-child(6) {
-				grid-column: 1 / span 3;
-			}
-		}
-	}
-
-	hr {
-		border: 3px solid currentColor;
-	}
-`
-
-export const CartPayment = styled.div`
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 0.75rem;
-
-	@media (max-width: 575px) {
-		grid-template-columns: 1fr;
-	}
-
-	label {
-		position: relative;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 1rem 0.75rem 1rem 1rem;
-		cursor: pointer;
-		font-size: var(--text-xs);
-		line-height: 1.3;
-		text-transform: uppercase;
-		text-wrap: balance;
-		background: ${(props) => props.theme['base-button']};
-		border: 1px solid ${(props) => props.theme['base-button']};
-		border-radius: 0.375rem;
-		transition:
-			background 200ms ease,
-			border 200ms ease;
-
-		&:has(:checked) {
-			background: ${(props) => props.theme['purple-light']} !important;
-			border: 1px solid ${(props) => props.theme.purple};
-		}
-
-		&:hover {
-			background: ${(props) => props.theme['base-hover']};
-		}
-
-		input {
-			position: absolute;
-			inset: 0;
-			opacity: 0;
-			cursor: pointer;
-		}
-
-		svg {
-			color: ${(props) => props.theme.purple};
-			flex-shrink: 0;
-		}
-	}
-`
-
 export const CartConfirmButton = styled.button`
 	height: 2.875rem;
 	width: 100%;
@@ -179,7 +82,27 @@ export const CartConfirmButton = styled.button`
 		color: ${(props) => props.theme['base-label']};
 	}
 
+	&:focus-visible {
+		box-shadow:
+			0 0 0 2px ${(props) => props.theme.white},
+			0 0 0 0.25rem ${(props) => props.theme.yellow};
+	}
+
 	&:not(:disabled):hover {
 		background: ${(props) => props.theme['yellow-dark']};
+	}
+`
+
+export const CartEmpty = styled.div`
+	padding: 1.5rem;
+	text-wrap: balance;
+	border-radius: 0.375rem;
+	margin-bottom: 2.25rem;
+	font-size: var(--text-sm);
+	color: ${(props) => props.theme['base-label']};
+	background: ${(props) => props.theme['base-button']};
+
+	@media (max-width: 575px) {
+		margin-bottom: 1.5rem;
 	}
 `

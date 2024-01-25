@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { CartContext } from '../../../../contexts/CartContext'
 
-import { CartAmountsContainer } from './styles'
+import { CartAmountItem, CartAmountsContainer } from './styles'
 
 import { formatMoney } from '../../../../utils/formatMoney'
 
@@ -14,18 +14,20 @@ export function CartAmounts() {
 
 	return (
 		<CartAmountsContainer>
-			<p>
+			<CartAmountItem>
 				<small>Total de itens:</small>
 				<span>{formatMoney(cartAmountOfProducts, 'prefixed')}</span>
-			</p>
-			<p>
+			</CartAmountItem>
+
+			<CartAmountItem>
 				<small>Entrega:</small>
 				<span>{formatMoney(cartShippingTax, 'prefixed')}</span>
-			</p>
-			<p>
+			</CartAmountItem>
+
+			<CartAmountItem>
 				<small>Total:</small>
 				<span>{formatMoney(cartAmountOfProductsWithShipping, 'prefixed')}</span>
-			</p>
+			</CartAmountItem>
 		</CartAmountsContainer>
 	)
 }

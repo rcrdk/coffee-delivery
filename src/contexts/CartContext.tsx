@@ -38,6 +38,7 @@ export const CartContext = createContext({} as CartContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
 	const [cartQuantity, setCartQuantity] = useState(0)
 	const [cartAmountOfProducts, setCartAmountOfProducts] = useState(0)
+
 	const [
 		cartAmountOfProductsWithShipping,
 		setCartAmountOfProductsWithShipping,
@@ -91,17 +92,17 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 		dispatch(decreaseProductQuantityAction(product))
 	}
 
-	const cartShippingTax = 3.5
+	const cartShippingTax = cartQuantity > 0 ? 3.5 : 0
 
 	useEffect(() => {
 		setCartQuantity(
-			products.reduce((acumulador, atual) => acumulador + atual.quantity, 0),
+			products.reduce((previous, current) => previous + current.quantity, 0),
 		)
 
 		setCartAmountOfProducts(
 			products.reduce(
-				(acumulador, atual) =>
-					acumulador + atual.quantity * atual.product.price,
+				(previous, current) =>
+					previous + current.quantity * current.product.price,
 				0,
 			),
 		)

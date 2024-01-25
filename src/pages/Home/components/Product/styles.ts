@@ -80,7 +80,7 @@ export const ProductPrice = styled.span`
 	}
 `
 
-export const ProductControls = styled.div`
+export const ProductQuantityContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	gap: 0.5rem;
@@ -92,7 +92,7 @@ export const ProductControls = styled.div`
 	}
 `
 
-export const ProductControlsCounter = styled.div`
+export const ProductQuantity = styled.div`
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -102,32 +102,37 @@ export const ProductControlsCounter = styled.div`
 	color: ${(props) => props.theme['base-title']};
 	background: ${(props) => props.theme['base-button']};
 
-	> button {
-		display: block;
-		background: none;
-		color: ${(props) => props.theme.purple};
-		cursor: pointer;
-		transition: color 200ms ease;
-
-		&:disabled {
-			cursor: not-allowed;
-		}
-
-		&:not(:disabled):hover {
-			color: ${(props) => props.theme['purple-dark']};
-		}
-	}
-
 	> span {
 		flex-grow: 1;
 	}
 `
 
-interface ProductControlsAdd {
+export const ProductQuantityControl = styled.button`
+	display: block;
+	background: none;
+	color: ${(props) => props.theme.purple};
+	cursor: pointer;
+	border-radius: 0.375rem;
+	transition: color 200ms ease;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	&:not(:disabled):hover {
+		color: ${(props) => props.theme['purple-dark']};
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 0.1rem ${(props) => props.theme.purple};
+	}
+`
+
+interface ProductAddButton {
 	variant: ButtonStateType
 }
 
-function ProductControlsAddBackground(state: ButtonStateType) {
+function ProductAddButtonBackground(state: ButtonStateType) {
 	switch (state) {
 		case 'initial':
 			return 'purple'
@@ -144,12 +149,12 @@ function ProductControlsAddBackground(state: ButtonStateType) {
 	}
 }
 
-export const ProductControlsAdd = styled.button<ProductControlsAdd>`
+export const ProductAddButton = styled.button<ProductAddButton>`
 	display: block;
 	padding: 0.5rem;
 	border-radius: 0.375rem;
 	background: ${(props) =>
-		props.theme[ProductControlsAddBackground(props.variant)]};
+		props.theme[ProductAddButtonBackground(props.variant)]};
 	color: ${(props) => props.theme.white};
 	cursor: default;
 	transition: background 200ms ease;
@@ -157,6 +162,12 @@ export const ProductControlsAdd = styled.button<ProductControlsAdd>`
 	&:not(:disabled):hover {
 		cursor: pointer;
 		background: ${(props) => props.theme['purple-dark']};
+	}
+
+	&:focus-visible {
+		box-shadow:
+			0 0 0 1px ${(props) => props.theme.white},
+			0 0 0 0.2rem ${(props) => props.theme.purple};
 	}
 
 	svg {

@@ -1,15 +1,16 @@
 import {
 	HeaderBrand,
-	HeaderCart,
+	HeaderButtonIcon,
 	HeaderContainer,
 	HeaderLocale,
 } from './styles'
 
-import { NavLink, useNavigate } from 'react-router-dom'
-import { MapPin, ShoppingCart } from 'phosphor-react'
-import { useContext } from 'react'
-
 import brandImage from '../../assets/brand.svg'
+
+import { NavLink, useNavigate } from 'react-router-dom'
+import { House, MapPin, ShoppingCart } from 'phosphor-react'
+
+import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
@@ -20,7 +21,11 @@ export function Header() {
 		navigate('/cart')
 	}
 
-	const disableCartLink = cartQuantity === 0
+	const handleNavigateToHome = () => {
+		navigate('/')
+	}
+
+	const titleCartLink = cartQuantity === 0
 
 	return (
 		<HeaderContainer>
@@ -36,17 +41,20 @@ export function Header() {
 					Porto Alegre, RS
 				</HeaderLocale>
 
-				<HeaderCart
+				<HeaderButtonIcon type="button" onClick={handleNavigateToHome}>
+					<House weight="fill" size={22} />
+				</HeaderButtonIcon>
+
+				<HeaderButtonIcon
 					type="button"
-					disabled={disableCartLink}
 					title={
-						disableCartLink ? 'Nenhum café no carrinho' : 'Carrinho de compras'
+						titleCartLink ? 'Nenhum café no carrinho' : 'Carrinho de compras'
 					}
 					onClick={handleNavigateToCart}
 				>
 					<ShoppingCart weight="fill" size={22} />
 					{cartQuantity > 0 && <span>{cartQuantity}</span>}
-				</HeaderCart>
+				</HeaderButtonIcon>
 			</div>
 		</HeaderContainer>
 	)

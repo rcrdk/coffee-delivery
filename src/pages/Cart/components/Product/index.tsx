@@ -4,10 +4,13 @@ import { Minus, Plus, Trash } from 'phosphor-react'
 
 import {
 	CartProductContainer,
-	CartProductControls,
+	CartProductQuantity,
+	CartProductQuantityControl,
 	CartProductRemove,
 } from './styles'
+
 import { formatMoney } from '../../../../utils/formatMoney'
+
 import { useContext } from 'react'
 import { CartContext } from '../../../../contexts/CartContext'
 
@@ -41,26 +44,27 @@ export function CartProduct({ item }: CartProductProps) {
 			<img src={item.product.image} alt="" />
 			<strong>{item.product.name}</strong>
 			<b>{formatMoney(subtotalPrice, 'prefixed')}</b>
+
 			<div>
-				<CartProductControls>
-					<button
+				<CartProductQuantity>
+					<CartProductQuantityControl
 						type="button"
 						onClick={handleDecreaseProductQuantity}
 						disabled={disableDecrease}
 					>
 						<Minus size={14} weight="bold" />
-					</button>
+					</CartProductQuantityControl>
 
 					<span>{item.quantity}</span>
 
-					<button
+					<CartProductQuantityControl
 						type="button"
 						onClick={handleIncreaseProductQuantity}
 						disabled={disableIncrease}
 					>
 						<Plus size={14} weight="bold" />
-					</button>
-				</CartProductControls>
+					</CartProductQuantityControl>
+				</CartProductQuantity>
 
 				<CartProductRemove type="button" onClick={handleRemoveProduct}>
 					<Trash size={16} />

@@ -40,7 +40,7 @@ export const CartProductContainer = styled.div`
 	}
 `
 
-export const CartProductControls = styled.div`
+export const CartProductQuantity = styled.div`
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -52,24 +52,29 @@ export const CartProductControls = styled.div`
 	background: ${(props) => props.theme['base-button']};
 	text-align: center;
 
-	> button {
-		display: block;
-		background: none;
-		color: ${(props) => props.theme.purple};
-		cursor: pointer;
-		transition: color 200ms ease;
-
-		&:disabled {
-			cursor: not-allowed;
-		}
-
-		&:not(:disabled):hover {
-			color: ${(props) => props.theme['purple-dark']};
-		}
-	}
-
 	> span {
 		flex-grow: 1;
+	}
+`
+
+export const CartProductQuantityControl = styled.button`
+	display: block;
+	background: none;
+	color: ${(props) => props.theme.purple};
+	cursor: pointer;
+	border-radius: 0.375rem;
+	transition: color 200ms ease;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	&:not(:disabled):hover {
+		color: ${(props) => props.theme['purple-dark']};
+	}
+
+	&:focus-visible {
+		box-shadow: 0 0 0 0.1rem ${(props) => props.theme.purple};
 	}
 `
 
@@ -85,6 +90,11 @@ export const CartProductRemove = styled.button`
 	font-size: var(--text-xs);
 	text-transform: uppercase;
 	cursor: pointer;
+	transition: background 300ms ease;
+
+	&:hover {
+		background: ${(props) => props.theme['base-hover']};
+	}
 
 	svg {
 		color: ${(props) => props.theme.purple};

@@ -1,15 +1,19 @@
-import { useContext, useState } from 'react'
 import { Product } from '../../../../dtos/product'
+
 import {
-	ProductControls,
 	ProductContainer,
 	ProductPrice,
 	ProductTags,
-	ProductControlsCounter,
-	ProductControlsAdd,
+	ProductAddButton,
+	ProductQuantity,
+	ProductQuantityControl,
+	ProductQuantityContainer,
 } from './styles'
+
 import { CheckCircle, Minus, Plus, ShoppingCart, Spinner } from 'phosphor-react'
 import { formatMoney } from '../../../../utils/formatMoney'
+
+import { useContext, useState } from 'react'
 import { CartContext } from '../../../../contexts/CartContext'
 
 export type ButtonStateType = 'initial' | 'loading' | 'success'
@@ -49,13 +53,11 @@ export function HomeProduct({ product }: HomeProductProps) {
 		<ProductContainer>
 			<img src={product.image} alt="" />
 
-			{product.tags.length > 0 && (
-				<ProductTags>
-					{product.tags.map((tag) => (
-						<li key={tag}>{tag}</li>
-					))}
-				</ProductTags>
-			)}
+			<ProductTags>
+				{product.tags.map((tag) => (
+					<li key={tag}>{tag}</li>
+				))}
+			</ProductTags>
 
 			<h3 className="h4">{product.name}</h3>
 			<p>{product.description}</p>
@@ -66,28 +68,28 @@ export function HomeProduct({ product }: HomeProductProps) {
 					<strong className="h3">{formatMoney(product.price)}</strong>
 				</ProductPrice>
 
-				<ProductControls>
-					<ProductControlsCounter>
-						<button
+				<ProductQuantityContainer>
+					<ProductQuantity>
+						<ProductQuantityControl
 							type="button"
 							onClick={handleRemoveQuantity}
 							disabled={disableRemove}
 						>
 							<Minus size={14} weight="bold" />
-						</button>
+						</ProductQuantityControl>
 
 						<span>{quantity}</span>
 
-						<button
+						<ProductQuantityControl
 							type="button"
 							onClick={handleAddQuantity}
 							disabled={disableAdd}
 						>
 							<Plus size={14} weight="bold" />
-						</button>
-					</ProductControlsCounter>
+						</ProductQuantityControl>
+					</ProductQuantity>
 
-					<ProductControlsAdd
+					<ProductAddButton
 						type="button"
 						variant={buttonState}
 						disabled={disableAddToCart}
@@ -100,8 +102,8 @@ export function HomeProduct({ product }: HomeProductProps) {
 						{buttonState === 'success' && (
 							<CheckCircle size={22} weight="bold" />
 						)}
-					</ProductControlsAdd>
-				</ProductControls>
+					</ProductAddButton>
+				</ProductQuantityContainer>
 			</div>
 		</ProductContainer>
 	)

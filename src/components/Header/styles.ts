@@ -19,6 +19,7 @@ export const HeaderBrand = styled.header`
 
 	a {
 		display: block;
+		border-radius: 0.375rem;
 	}
 
 	img {
@@ -34,9 +35,21 @@ const HeaderButton = styled.button`
 	border-radius: 0.5rem;
 	font-size: var(--text-sm);
 	cursor: pointer;
+	transition:
+		color 200ms ease,
+		background 200ms ease;
 
 	&:disabled {
 		cursor: not-allowed;
+	}
+
+	&:hover {
+		color: ${(props) => props.theme.white};
+
+		svg {
+			transition: color 200ms ease;
+			color: ${(props) => props.theme.white} !important;
+		}
 	}
 `
 
@@ -45,14 +58,34 @@ export const HeaderLocale = styled(HeaderButton)`
 	background: ${(props) => props.theme['purple-light']};
 
 	svg {
-		fill: ${(props) => props.theme.purple};
+		color: ${(props) => props.theme.purple};
+	}
+
+	&:hover {
+		background: ${(props) => props.theme.purple};
+	}
+
+	&:focus-visible {
+		box-shadow:
+			0 0 0 2px ${(props) => props.theme.white},
+			0 0 0 0.25rem ${(props) => props.theme.purple};
 	}
 `
 
-export const HeaderCart = styled(HeaderButton)`
+export const HeaderButtonIcon = styled(HeaderButton)`
 	position: relative;
 	color: ${(props) => props.theme['yellow-dark']};
 	background: ${(props) => props.theme['yellow-light']};
+
+	&:hover {
+		background: ${(props) => props.theme.yellow};
+	}
+
+	&:focus-visible {
+		box-shadow:
+			0 0 0 2px ${(props) => props.theme.white},
+			0 0 0 0.25rem ${(props) => props.theme.yellow};
+	}
 
 	span {
 		display: flex;
@@ -69,5 +102,6 @@ export const HeaderCart = styled(HeaderButton)`
 		font-size: var(--text-xs);
 		font-weight: bold;
 		transform: translate(-58%, 58%);
+		box-shadow: 0 0 0 0.1rem ${(props) => props.theme.white};
 	}
 `
