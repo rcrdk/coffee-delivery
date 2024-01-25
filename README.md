@@ -1,30 +1,10 @@
-# React + TypeScript + Vite
+# Rocketseat Ignite - Desafio 02
+# Aprofundando em Hooks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nesse desafio, desenvolvi uma mini lojinha de delivery de cafés baseado em um projeto do Figma utilizando ReactJS com Typescript com base nos conhecimentos aprendidos no segundo módulo da trilha de ReactJS do Ignite da Rocketseat. Aqui apliquei alguns aprendizados novos incluindo o context, reducer, router, manipulação de formulários e styled components.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**As seguintes funcionalidades foram previstas:**
+- Adicionar, alterar quantidade e remover cafés no carrinho
+- Calcular valores com base na quantidade de cafés adicionados
+- Inserir, salvar e validar dados do formulário
+- Exibir um resumo do pedido após o envio dos dados
