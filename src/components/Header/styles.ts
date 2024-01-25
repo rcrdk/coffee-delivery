@@ -57,6 +57,12 @@ export const HeaderLocale = styled(HeaderButton)`
 	color: ${(props) => props.theme['purple-dark']};
 	background: ${(props) => props.theme['purple-light']};
 
+	span {
+		@media (max-width : 575px) {
+			display: none;
+		}
+	}
+
 	svg {
 		color: ${(props) => props.theme.purple};
 	}

@@ -31,6 +31,10 @@ export const CartCard = styled.div`
 
 export const CartResumeCard = styled(CartCard)`
 	border-radius: 0.375rem 3.5rem 0.375rem 3.5rem;
+
+	@media (max-width: 575px) {
+		border-radius: 0.375rem 2.5rem 0.375rem 2.5rem;
+	}
 `
 
 interface CartCardHeaderProps {

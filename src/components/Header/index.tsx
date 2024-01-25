@@ -38,7 +38,7 @@ export function Header() {
 			<div>
 				<HeaderLocale type="button">
 					<MapPin weight="fill" size={22} />
-					Porto Alegre, RS
+					<span>Porto Alegre, RS</span>
 				</HeaderLocale>
 
 				<HeaderButtonIcon type="button" onClick={handleNavigateToHome}>

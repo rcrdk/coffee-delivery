@@ -5,6 +5,10 @@ export const ListContainer = styled.section`
 	z-index: 2;
 	padding: 2rem 0 6rem;
 
+	@media (max-width: 767px) {
+		padding-top: 0;
+	}
+
 	> div {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);

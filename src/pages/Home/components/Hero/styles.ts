@@ -51,6 +51,16 @@ export const HeroText = styled.div`
 	grid-area: text;
 	text-wrap: pretty;
 
+	@media (max-width: 575px) {
+		text-wrap: balance;
+	}
+
+	h1 {
+		@media (max-width: 575px) {
+			font-size: 2.5rem;
+		}
+	}
+
 	p {
 		margin-top: 1rem;
 		font-size: var(--text-lg);
@@ -70,6 +80,10 @@ export const HeroList = styled.ul`
 	@media (max-width: 1199px) and (min-width: 768px) {
 		grid-template-columns: repeat(4, 1fr);
 		margin-top: 6.25rem;
+	}
+
+	@media (max-width: 499px) {
+		grid-template-columns: 1fr;
 	}
 
 	li {
