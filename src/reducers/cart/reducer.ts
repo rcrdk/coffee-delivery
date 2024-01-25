@@ -1,9 +1,10 @@
 import { produce } from 'immer'
 import { ActionTypes } from './actions'
-import { CartItem } from '../../dtos/cart'
+import { CartItem, Order } from '../../dtos/cart'
 
 interface CartStates {
 	products: CartItem[]
+	order: Order
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,6 +61,16 @@ export function cartReducer(state: CartStates, action: any) {
 				)
 
 				draft.products[index].quantity -= 1
+			})
+		}
+		case ActionTypes.CREATE_NEW_ORDER: {
+			return produce(state, (draft) => {
+				draft.order = action.payload.order
+			})
+		}
+		case ActionTypes.CLEAR_CART: {
+			return produce(state, (draft) => {
+				draft.products = []
 			})
 		}
 		default:

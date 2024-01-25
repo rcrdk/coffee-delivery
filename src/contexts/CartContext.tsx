@@ -1,4 +1,4 @@
-import { CartItem } from '../dtos/cart'
+import { CartItem, Order } from '../dtos/cart'
 
 import {
 	ReactNode,
@@ -7,14 +7,18 @@ import {
 	useReducer,
 	useState,
 } from 'react'
+
 import { cartReducer } from '../reducers/cart/reducer'
 import { Product } from '../dtos/product'
+import { NewOrderFormData } from '../schemas/cart'
 
 import {
 	addProductAction,
 	decreaseProductQuantityAction,
 	increaseProductQuantityAction,
 	removeProductAction,
+	createNewOrderAction,
+	clearCartAction,
 } from '../reducers/cart/actions'
 
 interface CartContextType {
@@ -27,6 +31,8 @@ interface CartContextType {
 	removeProduct: (product: CartItem) => void
 	increaseProductQuantity: (product: CartItem) => void
 	decreaseProductQuantity: (product: CartItem) => void
+	createNewOrder: (data: NewOrderFormData) => void
+	currentOrder: Order
 }
 
 interface CartContextProviderProps {
@@ -48,6 +54,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 		cartReducer,
 		{
 			products: [],
+			data: {},
 		},
 		(initialState) => {
 			const storedStateAsJSON = localStorage.getItem(
@@ -62,7 +69,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 		},
 	)
 
-	const { products } = cartState
+	const { products, order } = cartState
 
 	useEffect(() => {
 		const stateJSON = JSON.stringify(cartState)
@@ -92,7 +99,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 		dispatch(decreaseProductQuantityAction(product))
 	}
 
-	const cartShippingTax = cartQuantity > 0 ? 3.5 : 0
+	const currentOrder = order
+
+	const cartShippingTax =
+		cartQuantity > 0 || currentOrder?.products?.length > 0 ? 3.5 : 0
 
 	useEffect(() => {
 		setCartQuantity(
@@ -110,6 +120,17 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 		setCartAmountOfProductsWithShipping(cartAmountOfProducts + cartShippingTax)
 	}, [products, cartAmountOfProducts, cartShippingTax])
 
+	function createNewOrder(data: NewOrderFormData) {
+		const newOrder: Order = {
+			id: new Date().getTime().toString(),
+			data,
+			products,
+		}
+
+		dispatch(createNewOrderAction(newOrder))
+		dispatch(clearCartAction())
+	}
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -122,6 +143,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 				removeProduct,
 				increaseProductQuantity,
 				decreaseProductQuantity,
+				createNewOrder,
+				currentOrder,
 			}}
 		>
 			{children}

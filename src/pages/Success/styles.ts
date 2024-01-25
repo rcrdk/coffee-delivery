@@ -44,16 +44,6 @@ export const SuccessTitle = styled.div`
 export const SuccessCard = styled.div`
 	position: relative;
 	z-index: 1;
-	padding: 2.5rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-	justify-content: center;
-
-	@media (max-width: 575px) {
-		padding: 1.75rem;
-		gap: 1.5rem;
-	}
 
 	&:before {
 		content: '';
@@ -72,6 +62,21 @@ export const SuccessCard = styled.div`
 			border-radius: 0.375rem 2.5rem 0.375rem 2.5rem;
 		}
 	}
+`
+
+export const SuccessCardInner = styled.div`
+	position: relative;
+	z-index: 1;
+	padding: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	justify-content: center;
+
+	@media (max-width: 575px) {
+		padding: 1.75rem;
+		gap: 1.5rem;
+	}
 
 	&:after {
 		content: '';
@@ -84,6 +89,21 @@ export const SuccessCard = styled.div`
 
 		@media (max-width: 575px) {
 			border-radius: 0.375rem 2.5rem 0.375rem 2.5rem;
+		}
+	}
+
+	&:nth-child(1) {
+		&:after {
+			bottom: 1px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+
+	&:nth-child(2) {
+		&:after {
+			border-top-right-radius: 0;
+			border-top-left-radius: 0;
 		}
 	}
 `

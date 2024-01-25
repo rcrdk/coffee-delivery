@@ -30,7 +30,7 @@ export const CartPaymentItem = styled.label`
 
 	&:has(:checked) {
 		background: ${(props) => props.theme['purple-light']} !important;
-		border: 1px solid ${(props) => props.theme.purple};
+		border: 1px solid ${(props) => props.theme.purple} !important;
 	}
 
 	&:has(:focus-visible) {
@@ -41,6 +41,7 @@ export const CartPaymentItem = styled.label`
 
 	&:hover {
 		background: ${(props) => props.theme['base-hover']};
+		border-color: ${(props) => props.theme['base-hover']};
 	}
 
 	input {
