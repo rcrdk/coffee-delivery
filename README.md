@@ -13,10 +13,7 @@ I developed this project as a challenge of my latest studies on React lessons at
 - [TypeScript](https://www.typescriptlang.org/)
 - [Styled Components](https://styled-components.com/)
 - [Figma](http://figma.com/)
-- [React](https://reactjs.org)
-- [TypeScript](https://www.typescriptlang.org/)
 - [Figma](http://figma.com/)
-- [Styled Components](https://styled-components.com/)
 - [React Router](https://reactrouter.com/en/main)
 - [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
 
